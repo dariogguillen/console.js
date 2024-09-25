@@ -24,4 +24,4 @@ export const yarg = yargs(hideBin(process.argv))
     if (argv.b < 1) throw new Error("base should be > 0 ");
     return true;
   })
-  .parseAsync();
+  .parseSync();
