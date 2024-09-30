@@ -1,20 +1,24 @@
-import fs from "fs";
 import { yarg } from "./config/plugins/args.plugins";
+import { ServerApp } from "./server/server";
 
-const path = "outputs";
-const { b: base, l: limit, s: show } = yarg;
-let message = `
-================================================
-              Tabla del ${base}
-================================================\n
-`;
-for (let i = 1; i < limit; i++) {
-  message += `${base} * ${i} = ${base * i}\n`;
+// let message = `
+// ================================================
+//               Tabla del ${base}
+// ================================================\n
+// `;
+
+async function main() {
+  const {
+    b: base,
+    l: limit,
+    s: showTable,
+    n: name,
+    d: destination,
+  } = await yarg;
+
+  ServerApp.run({ base, limit, showTable, name, destination });
 }
 
-if (show) console.log(message);
-
-fs.mkdirSync(path, { recursive: true });
-fs.writeFileSync(`${path}/tabla-${base}-${limit}.txt`, message);
-
-console.log("File created!");
+(async () => {
+  await main();
+})();
