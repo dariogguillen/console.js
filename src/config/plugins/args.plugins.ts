@@ -20,8 +20,20 @@ export const yarg = yargs(hideBin(process.argv))
     default: false,
     description: "Show multiplication table",
   })
+  .option("n", {
+    alias: "name",
+    type: "string",
+    default: "table",
+    description: "File name",
+  })
+  .options("d", {
+    alias: "destination",
+    type: "string",
+    default: "./outputs",
+    description: " File destination",
+  })
   .check((argv) => {
     if (argv.b < 1) throw new Error("base should be > 0 ");
     return true;
   })
-  .parseSync();
+  .parseAsync();
