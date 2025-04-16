@@ -1,12 +1,6 @@
 import { yarg } from "./config/plugins/args.plugins";
 import { ServerApp } from "./server/server";
 
-// let message = `
-// ================================================
-//               Tabla del ${base}
-// ================================================\n
-// `;
-
 async function main() {
   const {
     b: base,
