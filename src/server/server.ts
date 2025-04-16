@@ -1,7 +1,7 @@
 import { CreateTable } from "../domain/use-cases/create-table";
 import { SaveFile } from "../domain/use-cases/save-file";
 
-interface RunOptions {
+export interface RunOptions {
   base: number;
   limit: number;
   showTable: boolean;
