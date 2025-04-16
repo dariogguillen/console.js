@@ -38,4 +38,28 @@ describe("SaveFileUseCase", () => {
     expect(fileContent).toBe(options.fileContent);
     fs.rmSync("custom-outputs", { recursive: true });
   });
+
+  test("should return false if directory could not be created", () => {
+    const mkdirSpy = jest.spyOn(fs, "mkdirSync").mockImplementation(() => {
+      throw new Error("Failed to create directory");
+    });
+    const options = { fileContent: "test content" };
+    const result = saveFile.execute(options);
+
+    expect(result).toBeFalsy();
+
+    mkdirSpy.mockRestore();
+  });
+
+  test("should return false if directory could not be created", () => {
+    const fileSpy = jest.spyOn(fs, "writeFileSync").mockImplementation(() => {
+      throw new Error("Failed to create file");
+    });
+    const options = { fileContent: "test content" };
+    const result = saveFile.execute(options);
+
+    expect(result).toBeFalsy();
+
+    fileSpy.mockRestore();
+  });
 });
