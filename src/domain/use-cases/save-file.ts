@@ -11,7 +11,8 @@ export interface SaveFileOptions {
 }
 
 export class SaveFile implements SaveFileUseCase {
-  constructor /** repository ??? */() {}
+  /** repository ??? */
+  constructor() {}
 
   execute({
     fileContent,
